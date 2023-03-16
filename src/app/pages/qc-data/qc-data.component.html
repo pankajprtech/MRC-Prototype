@@ -1,0 +1,753 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="card mt-1">
+        <div class="card-body py-1 px-2">
+            <div class="row qc-company-wrapper">
+                <div class="col-12">
+                    <div class="qc-complete-status float-start position-relative">
+                        <!-- <div class="collabse-icon btn-icon btn-icon-xs float-start rounded-circle cursor-pointer position-absolute"
+                        placement="bottom" ngbTooltip="Collapse info" tooltipClass="custome-tooltip" 
+                        [ngClass]="collapseCompanyInfoStatus ? 'd-none' : 'd-flex'" (click)="collapseCompanyInfo()">
+                            <i class="fa-solid fa-chevron-up font-10"></i>
+                        </div> -->
+                        <div class="custom-progress progress blue">
+                            <span class="progress-left">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <div class="progress-value text-medium">90%</div>
+                        </div>
+                        <!-- <p class="text-center text-medium font-12 mt-1">QC Completed</p> -->
+                    </div>
+                    <div class="company-details float-start">
+                        <!-- <div class="logo-wrapper float-start ms-2">
+                            <img src="./assets/images/brand-logo/amazon-1.svg"class="w-100" />
+                        </div> -->
+                        <div class="company-info float-start">
+                            <!-- <p class="pill-sm float-start font-12 mb-1" >India</p> -->
+                            <p class="company-name float-start w-100 text-medium font-20">Brandy Corporation <span class="country text-secondary font-12">(United States)</span></p>
+                            <div class="float-start w-100 company-field">
+                                <p class="field-label mt-2 float-start font-12 me-4">
+                                    <span class="label-here text-secondary">OWL Id :</span> 
+                                    <span class="value-here">OWL00046675</span>
+                                </p>
+                                <p class="field-label mt-2 float-start font-12 me-4">
+                                    <span class="label-here text-secondary">ISIN :</span> 
+                                    <span class="value-here">1029378226</span>
+                                </p>
+                                <p class="field-label mt-2 float-start font-12">
+                                    <span class="label-here text-secondary">Year of analysis :</span> 
+                                    <span class="value-here"> 2021</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-0 mt-2">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-12">
+                    <nav>
+                        <div class="custom-nav nav nav-tabs" id="nav-tab" role="tablist">
+                            <div class="menu float-start">
+                                <div class="btn-icon rounded-circle cursor-pointer me-2 float-start" (click)="sidebarMenu()">
+                                    <i class="fa-solid fa-bars font-16"></i>
+                                </div>
+                            </div>
+                            <div class="nav-link cursor-pointer active" id="nav-home-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                                Environment
+                                <span class="me-2">20</span>
+                            </div>
+                            <div class="nav-link cursor-pointer" id="nav-profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-profile" role="tab" aria-controls="nav-profile"
+                                aria-selected="false">
+                                Social
+                                <span class="me-2">18</span>
+                            </div>
+                            <div class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+                                aria-selected="false">
+                                Governance
+                                <span class="me-2">31</span>
+                            </div>
+                            <div class="float-end ms-auto">
+                                <!-- <form class="reporting-year float-start me-2 position-relative">
+                                    <span class="reporting-label font-12 text-secondary position-absolute bg-white">Reporting Year</span>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option value="1">2022</option>
+                                        <option selected>2023</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                </form> -->
+                                <form class="reporting-year float-start me-2 position-relative">
+                                    <!-- <span class="reporting-label font-12 text-secondary position-absolute bg-white">Reporting Year</span> -->
+                                    <div class="search-field float-start">
+                                        <i class="fa-solid fa-magnifying-glass float-start"></i>
+                                        <input class="form-control float-start" type="search" placeholder="Search..." />
+                                    </div>
+                                </form>
+                                <!-- <div class="btn-icon rounded-circle cursor-pointer me-2 float-start">
+                                    <i class="fa-solid fa-magnifying-glass font-16"></i>
+                                </div> -->
+                                <div class="btn-icon rounded-circle cursor-pointer me-2 float-start" target="_blank" [routerLink]="['/view-all-documents']">
+                                    <i class="fa-regular fa-file-pdf font-16"></i>
+                                </div>
+                                <div class="btn-icon rounded-circle cursor-pointer me-2 float-start">
+                                    <i class="fa-regular fa-file-excel font-16"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-content mt-1 float-start w-100" id="nav-tabContent">
+                        <div class="tab-pane fade show active p-0 float-start w-100" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <div class="main-wrapper all-view float-start w-100">
+                                <div class="category-wrapper float-start w-100">
+                                    <div class="accordion custom-accordion" id="accordionExample">
+                                        <div class="sidemenu float-start" *ngIf="sidemenuStatus == true" [ngClass]="sidebarFixedStatus ? 'sidemenu-fixed' : ''">
+                                            <div class="accordion-item">
+                                                <div class="accordion-header qc-completed" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                        <span class="float-start">Company Information</span>
+                                                        <div class="group-stat float-end">
+                                                            <i class="fa-solid fa-circle-check font-20"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <span class="float-start">CDP Reporting</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">4</span>
+                                                            <span class="float-start font-10">/5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingThree">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <span class="float-start">GHS Emission</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">12</span>
+                                                            <span class="float-start font-12">/22</span>
+                                                        </div>
+                                                    </div>
+                                                </h2>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header qc-completed" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <span class="float-start">Energy</span>
+                                                        <div class="group-stat float-end">
+                                                            <i class="fa-solid fa-circle-check font-20"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="accordion-item">
+                                                <div class="accordion-header" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <span class="float-start">Non-Greenhouse Gas Emissions</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">4</span>
+                                                            <span class="float-start font-10">/5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingThree">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <span class="float-start">Paris Agreement</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">12</span>
+                                                            <span class="float-start font-12">/22</span>
+                                                        </div>
+                                                    </div>
+                                                </h2>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header qc-completed" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <span class="float-start">Water</span>
+                                                        <div class="group-stat float-end">
+                                                            <i class="fa-solid fa-circle-check font-20"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <span class="float-start">Waste</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">4</span>
+                                                            <span class="float-start font-10">/5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingThree">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <span class="float-start">Bio-diversty</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">12</span>
+                                                            <span class="float-start font-12">/22</span>
+                                                        </div>
+                                                    </div>
+                                                </h2>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <span class="float-start">Land Degradation</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">4</span>
+                                                            <span class="float-start font-10">/5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingThree">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <span class="float-start">Emission Reduction</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">12</span>
+                                                            <span class="float-start font-12">/22</span>
+                                                        </div>
+                                                    </div>
+                                                </h2>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header qc-completed" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <span class="float-start">Product Innovation</span>
+                                                        <div class="group-stat float-end">
+                                                            <i class="fa-solid fa-circle-check font-20"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header" id="headingTwo">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <span class="float-start">Resource Reduction</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">4</span>
+                                                            <span class="float-start font-10">/5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingThree">
+                                                    <div class="accordion-button collapsed cursor-pointer"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        <span class="float-start">Net-Zero</span>
+                                                        <div class="group-stat float-end">
+                                                            <span class="float-start font-16">12</span>
+                                                            <span class="float-start font-12">/22</span>
+                                                        </div>
+                                                    </div>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="main-panel float-start" [ngClass]="[pdfViewerStatus ? 'pdfViewerShow' : ' ', sidemenuStatus ? 'sidebarHidden' : 'sidebarVisiable']">
+                                            <div class="accordion-item">
+                                                <div id="collapseOne" class="accordion-collapse collapsed show"
+                                                    aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body float-start w-100 pe-0">
+                                                        <div class="grid-wrapper table-responsive float-start w-100">
+                                                            <table class="qsn-table-wrapper table table-bordered w-100 mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">Sub Topic</th>
+                                                                        <th scope="col" style="width: 135px;">Reported Data</th>
+                                                                        <th scope="col">Unit</th>
+                                                                        <th scope="col" style="width: 140px;">Prev Year Data</th>
+                                                                        <th scope="col">Unit</th>
+                                                                        <th scope="col">Score</th>
+                                                                        <th scope="col" style="min-width: 120px;" class="text-center">Action</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="col" class="bg-transparent">&nbsp;</th>
+                                                                        <th colspan="2" class="text-center bg-transparent border">2021 </th>
+                                                                        <th colspan="2" class="text-center bg-transparent border border-start-0">2020 </th>
+                                                                        <th scope="col" class="bg-transparent">&nbsp;</th>
+                                                                        <th scope="col" style="min-width: 120px;" class="bg-transparent">&nbsp;</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="active">
+                                                                        <td>
+                                                                            <div class="custom-checkbox float-start">
+                                                                                <input type="checkbox" id="QCStatus">
+                                                                                <label for="QCStatus">&nbsp;</label>
+                                                                            </div>
+                                                                            <p class="float-start sub-category-text">The Primary exchange of the company <i
+                                                                                class="fa-solid fa-circle-info ms-1 font-16 text-secondary custom-popover-action cursor-pointer"></i></p>
+                                                                        </td>
+                                                                        <td class="position-relative">NYSE </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td class="position-relative">NYSE </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td>
+                                                                            <span
+                                                                                class="custom-progress progress blue m-auto bg-transparent">
+                                                                                <span class="progress-left">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span class="progress-right">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="progress-value text-medium">90%</span>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="min-width: 190px;" class="text-center pe-0" *ngIf="pdfViewerStatus == false"> 
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start" 
+                                                                            placement="bottom" ngbTooltip="Values larger or smaller than estimates">
+                                                                                <i class="fa-solid fa-triangle-exclamation font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start" 
+                                                                            placement="bottom" ngbTooltip="Comments">
+                                                                                <i class="fa-regular fa-comment-dots font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start" (click)="snippetViewer()" 
+                                                                            placement="bottom" ngbTooltip="Snippets">
+                                                                                <i class="fa-regular fa-eye font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer float-start" (click)="pdfViewer()" 
+                                                                            placement="bottom" ngbTooltip="View Document">
+                                                                                <i class="fa-regular fa-file-lines font-16"></i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="custom-checkbox float-start">
+                                                                                <input type="checkbox" id="QCStatus"
+                                                                                    checked>
+                                                                                <label for="QCStatus">&nbsp;</label>
+                                                                            </div>
+                                                                            <p class="float-start sub-category-text">The company level actual fiscal year end in dd/mm/yyyy format <i class="fa-solid fa-circle-info ms-1 font-16 text-secondary custom-popover-action cursor-pointer"></i></p>
+                                                                        </td>
+                                                                        <td class="position-relative">31/07/2021 </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td class="position-relative">31/07/2020 </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td>
+                                                                            <span
+                                                                                class="custom-progress progress blue m-auto bg-transparent">
+                                                                                <span class="progress-left">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span class="progress-right">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="progress-value text-medium">90%</span>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="min-width: 190px;" class="text-center pe-0" *ngIf="pdfViewerStatus == false"> 
+                                                                            <div class="btn-icon alert-onhover warning-alert rounded-circle cursor-pointer me-2 float-start" 
+                                                                            placement="bottom" ngbTooltip="Values larger or smaller than estimates">
+                                                                                <i class="fa-solid fa-triangle-exclamation font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon rounded-circle cursor-pointer me-2 float-start">
+                                                                                <i class="fa-regular fa-comment-dots font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon rounded-circle cursor-pointer me-2 float-start" (click)="snippetViewer()">
+                                                                                <i class="fa-regular fa-eye font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon rounded-circle cursor-pointer float-start" (click)="pdfViewer()">
+                                                                                <i class="fa-regular fa-file-lines font-16"></i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="custom-checkbox float-start">
+                                                                                <input type="checkbox" id="QCStatus">
+                                                                                <label for="QCStatus">&nbsp;</label>
+                                                                            </div>
+                                                                            <p class="float-start sub-category-text">The latest reporting currency of the company <i class="fa-solid fa-circle-info ms-1 font-16 text-secondary custom-popover-action cursor-pointer"></i></p>
+                                                                            
+                                                                        </td>
+                                                                        <td class="position-relative">31/07/2021 </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td class="position-relative">31/07/2020 </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td>
+                                                                            <span
+                                                                                class="custom-progress progress blue m-auto bg-transparent">
+                                                                                <span class="progress-left">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span class="progress-right">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="progress-value text-medium">90%</span>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="min-width: 190px;" class="text-center pe-0" *ngIf="pdfViewerStatus == false"> 
+                                                                            <div class="btn-icon alert-onhover danger-alert rounded-circle cursor-pointer me-2 float-start" 
+                                                                            placement="bottom" ngbTooltip="Values larger or smaller than estimates">
+                                                                                <i class="fa-solid fa-triangle-exclamation font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start">
+                                                                                <i class="fa-regular fa-comment-dots font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start" (click)="snippetViewer()">
+                                                                                <i class="fa-regular fa-eye font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer float-start" (click)="pdfViewer()">
+                                                                                <i class="fa-regular fa-file-lines font-16"></i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="custom-checkbox float-start">
+                                                                                <input type="checkbox" id="QCStatus"
+                                                                                    checked>
+                                                                                <label for="QCStatus">&nbsp;</label>
+                                                                            </div>
+                                                                            <p class="float-start sub-category-text">Enterprise Value = Market capitalisation + Total Debt - Cash and cash Equivalents <i class="fa-solid fa-circle-info ms-1 font-16 text-secondary custom-popover-action cursor-pointer"></i></p>
+                                                                            
+                                                                        </td>
+                                                                        <td class="position-relative">11,49,248 </td>
+                                                                        <td>Thousands USD</td>
+                                                                        <td class="position-relative">10,76,982 </td>
+                                                                        <td>Thousands USD</td>
+                                                                        <td>
+                                                                            <span
+                                                                                class="custom-progress progress blue m-auto bg-transparent">
+                                                                                <span class="progress-left">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span class="progress-right">
+                                                                                    <span class="progress-bar"></span>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="progress-value text-medium">90%</span>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="min-width: 190px;" class="text-center pe-0" *ngIf="pdfViewerStatus == false"> 
+                                                                            <div class="btn-icon rounded-circle cursor-pointer me-2 float-start" 
+                                                                            placement="bottom" ngbTooltip="Values larger or smaller than estimates">
+                                                                                <i class="fa-solid fa-triangle-exclamation font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start">
+                                                                                <i class="fa-regular fa-comment-dots font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer me-2 float-start" (click)="snippetViewer()">
+                                                                                <i class="fa-regular fa-eye font-16"></i>
+                                                                            </div>
+                                                                            <div class="btn-icon custom-popover-action rounded-circle cursor-pointer float-start" (click)="pdfViewer()">
+                                                                                <i class="fa-regular fa-file-lines font-16"></i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <!-- <div class="question-wrapper float-start w-100">
+                                                        <div class="qsn-text float-start">
+                                                            <p class="text-regular">The Primary exchange of the company</p>
+                                                        </div>
+                                                        <div class="ans-text float-start">
+                                                            <div class="form-group">
+                                                                <div class="float-start">
+                                                                    <label class="form-label" [ngClass]="ansDataStatus == true ? 'd-none' : 'd-block'">$25000</label>
+                                                                    <input class="form-control" placeholder="" value="$25000"  [ngClass]="ansDataStatus == true ? 'd-block' : 'd-none'" />
+                                                                </div>
+                                                                <div class="float-start">
+                                                                    <label class="form-label float-start" [ngClass]="ansDataUnitStatus == true ? 'd-none' : 'd-block'" (click)="ansDataUnit()">&nbsp;MM</label>
+                                                                    <select class="form-control" [ngClass]="ansDataUnitStatus == true ? 'd-block' : 'd-none'" (click)="ansDataUnit()">
+                                                                        <option value="">&nbsp;MM</option>
+                                                                        <option value="cm">&nbsp; CM</option>
+                                                                        <option value="ft">&nbsp; FT</option>
+                                                                        <option value="in">&nbsp; IN</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="date-reported-popover custom-popover clickable-popover icon-popover popover-overflow float-start position-relative float-start">
+                                                                    <i class="fa-solid fa-circle-info ms-2 text-secondary custom-popover-action cursor-pointer" (click)="reportedValueComment()"></i>
+                                                                    <div class="custom-popover-wrapper position-absolute" [ngClass]="reportedValueCommentStatus ? 'd-block' : 'd-none'">
+                                                                        <div class="custom-popover-header float-start w-100">
+                                                                            <p class="font-16 float-start w-100">
+                                                                                <span class="float-start">Data as per reported</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="custom-popover-body py-2 px-3 float-start w-100">
+                                                                            <p class="float-start w-100 my-2">variance > 50% compared to previous year</p>
+                                                                            <section class="float-start w-100 pt-3 mb-2">
+                                                                                <ul class="timeline float-start w-100">
+                                                                                  <li class="timeline-item mb-4 float-start w-100">
+                                                                                    <div class="name-wrapper">
+                                                                                        <p class="name float-start text-truncate font-14">Pankaj Pede</p>
+                                                                                        <p class="time text-muted mb-2 font-12 text-secondary float-end text-end">38 Min</p>
+                                                                                    </div>
+                                                                                    <p class="text-muted font-14 text-secondary float-start w-100">
+                                                                                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+                                                                                      necessitatibus adipisci, ad alias, voluptate pariatur officia
+                                                                                    </p>
+                                                                                  </li>
+                                                                              
+                                                                                  <li class="timeline-item mb-4 float-start w-100">
+                                                                                    <div class="name-wrapper">
+                                                                                        <p class="name float-start text-truncate font-14">Saransh Jain</p>
+                                                                                        <p class="time text-muted mb-2 font-12 text-secondary float-end text-end">19 March 2020</p>
+                                                                                    </div>
+                                                                                    <p class="text-muted font-14 text-secondary float-start w-100">
+                                                                                      Quisque ornare dui nibh, sagittis egestas nisi luctus nec.
+                                                                                    </p>
+                                                                                  </li>
+                                                                                </ul>
+                                                                                <div class="add-comment float-start w-100 position-relative">
+                                                                                    <textarea class="form-control float-start" placeholder="Add comment"></textarea>
+                                                                                    <div class="btn-icon float-start rounded-circle cursor-pointer float-start position-absolute">
+                                                                                        <i class="fa-regular fa-paper-plane font-20"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="icon-wrapper float-end">
+                                                            <div class="custom-popover float-start position-relative me-2">
+                                                                <div class="btn-icon custom-popover-action float-start rounded-circle cursor-pointer">
+                                                                    <i class="fa-solid fa-clock-rotate-left font-16"></i>
+                                                                </div>
+                                                                <div class="custom-popover-wrapper position-absolute">
+                                                                    <div class="custom-popover-header float-start w-100">
+                                                                        <p class="font-16 float-start w-100">
+                                                                            <span class="float-start font-14">Previous Year Data</span></p>
+                                                                    </div>
+                                                                    <div class="custom-popover-body float-start w-100">
+                                                                        <div class="form-group">
+                                                                            <div class="float-start">
+                                                                                <label class="form-label" [ngClass]="ansDataStatus == true ? 'd-none' : 'd-block'">$25000</label>
+                                                                                <input class="form-control" placeholder="" value="$25000"  [ngClass]="ansDataStatus == true ? 'd-block' : 'd-none'" />
+                                                                            </div>
+                                                                            <div class="float-start">
+                                                                                <label class="form-label float-start" [ngClass]="ansDataUnitStatus == true ? 'd-none' : 'd-block'" (click)="ansDataUnit()">&nbsp;MM</label>
+                                                                                <select class="form-control" [ngClass]="ansDataUnitStatus == true ? 'd-block' : 'd-none'" (click)="ansDataUnit()">
+                                                                                    <option value="">&nbsp;MM</option>
+                                                                                    <option value="cm">&nbsp; CM</option>
+                                                                                    <option value="ft">&nbsp; FT</option>
+                                                                                    <option value="in">&nbsp; IN</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="custom-popover float-start position-relative me-2">
+                                                                <div class="btn-icon custom-popover-action float-start rounded-circle cursor-pointer">
+                                                                    <i class="fa-regular fa-star font-16"></i>
+                                                                </div>
+                                                                <div class="custom-popover-wrapper position-absolute">
+                                                                    <div class="custom-popover-header float-start w-100">
+                                                                        <p class="font-16 float-start w-100">
+                                                                            <span class="float-start font-14">Standarize Data</span></p>
+                                                                    </div>
+                                                                    <div class="custom-popover-body float-start w-100">
+                                                                        <div class="form-group">
+                                                                            <div class="float-start">
+                                                                                <label class="form-label" [ngClass]="ansDataStatus == true ? 'd-none' : 'd-block'">$25000</label>
+                                                                                <input class="form-control" placeholder="" value="$25000"  [ngClass]="ansDataStatus == true ? 'd-block' : 'd-none'" />
+                                                                            </div>
+                                                                            <div class="float-start">
+                                                                                <label class="form-label float-start" [ngClass]="ansDataUnitStatus == true ? 'd-none' : 'd-block'" (click)="ansDataUnit()">&nbsp;MM</label>
+                                                                                <select class="form-control" [ngClass]="ansDataUnitStatus == true ? 'd-block' : 'd-none'" (click)="ansDataUnit()">
+                                                                                    <option value="">&nbsp;MM</option>
+                                                                                    <option value="cm">&nbsp; CM</option>
+                                                                                    <option value="ft">&nbsp; FT</option>
+                                                                                    <option value="in">&nbsp; IN</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="qc-msg-wrapper custom-popover float-start position-relative me-2">
+                                                                <div class="btn-icon custom-popover-action float-start rounded-circle cursor-pointer">
+                                                                    <i class="fa-regular fa-comment-dots font-16"></i>
+                                                                </div>
+                                                                <div class="custom-popover-wrapper position-absolute">
+                                                                    <div class="custom-popover-header float-start w-100">
+                                                                        <p class="font-16 float-start w-100">
+                                                                            <span class="float-start font-14">Automated QC Messages</span></p>
+                                                                    </div>
+                                                                    <div class="custom-popover-body float-start w-100">
+                                                                        <p class="font-14 float-start w-100 mb-1">variance > 50% compared to previous year</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="custom-popover float-start position-relative me-2">
+                                                                <div class="btn-icon custom-popover-action float-start rounded-circle cursor-pointer">
+                                                                    <i class="fa-solid fa-eye font-16"></i>
+                                                                </div>
+                                                                <div class="custom-popover-wrapper position-absolute">
+                                                                    <div class="custom-popover-header float-start w-100">
+                                                                        <p class="font-16 float-start w-100">
+                                                                            <span class="float-start font-14">View Source </span></p>
+                                                                    </div>
+                                                                    <div class="custom-popover-body float-start w-100">
+                                                                        <p class="font-14 float-start w-100 mb-1">variance > 50% compared to previous year</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                                    aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element. These
+                                                        classes control the overall appearance, as well as the showing
+                                                        and hiding via CSS transitions. You can modify any of this with
+                                                        custom CSS or overriding our default variables. It's also worth
+                                                        noting that just about any HTML can go within the
+                                                        <code>.accordion-body</code>, though the transition does limit
+                                                        overflow.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <div id="collapseThree" class="accordion-collapse collapse"
+                                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is
+                                                        hidden by default, until the collapse plugin adds the
+                                                        appropriate classes that we use to style each element. These
+                                                        classes control the overall appearance, as well as the showing
+                                                        and hiding via CSS transitions. You can modify any of this with
+                                                        custom CSS or overriding our default variables. It's also worth
+                                                        noting that just about any HTML can go within the
+                                                        <code>.accordion-body</code>, though the transition does limit
+                                                        overflow.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pdf-viewer-wrapper float-start" *ngIf="pdfViewerStatus == true && showPdfStatus == true">
+                                            <div class="viewer-header float-start w-100 border-bottom">
+                                                <p class="float-start font-14"><strong>PDF File :</strong> BAC_AR21_Full_Report_030122.pdf</p>
+                                                <span class="btn-sm btn-danger cursor-pointer float-start" (click)="pdfViewerHide()">
+                                                    <i class="fa-solid fa-xmark font-16 text-white"></i>
+                                                </span>
+                                            </div>
+                                            <div class="viewer-body float-start w-100">
+                                                <iframe class="float-start" width="100%" height="100%" src="./assets/doc/BAC_AR21_Full_Report_030122.pdf"></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="pdf-viewer-wrapper float-start" *ngIf="pdfViewerStatus == true && snippetViewerStatus == true">
+                                            <div class="viewer-header float-start w-100 border-bottom">
+                                                <p class="float-start font-14">Snippet</p>
+                                                <span class="btn-sm btn-danger cursor-pointer float-start" (click)="pdfViewerHide()">
+                                                    <i class="fa-solid fa-xmark font-16 text-white"></i>
+                                                </span>
+                                            </div>
+                                            <div class="viewer-body float-start w-100 p-2 pt-2">
+                                                <div class="custom-popover-body p-2 float-start w-100">
+                                                    <section class="float-start w-100">
+                                                        <ul class="timeline float-start w-100">
+                                                          <li class="timeline-item mb-3 float-start w-100 border">
+                                                            <div class="name-wrapper float-start w-100 border-bottom p-2">
+                                                                <span class="pdf-icon float-start me-2"></span>
+                                                                <span class="pdf-name float-left text-truncate font-14">BAC_AR21_Full_Report_030122.pdf</span>
+                                                                <span class="page-nu float-left font-12 p-1 ms-2 text-primary">Page No. - 218</span>
+                                                            </div>
+                                                            <div class="timeline-content float-start w-100">
+                                                                <img src="./assets/images/snippet/snippet-1.png" class="float-start w-100" />
+                                                            </div>
+                                                          </li>
+                                                          <li class="timeline-item mb-3 float-start w-100 border">
+                                                            <div class="name-wrapper float-start w-100 border-bottom p-2">
+                                                                <span class="pdf-icon float-start me-2"></span>
+                                                                <span class="pdf-name float-left text-truncate font-14">BAC_AR21_Full_Report_030122.pdf</span>
+                                                                <span class="page-nu float-left font-12 p-1 ms-2 text-primary">Page No. - 218</span>
+                                                            </div>
+                                                            <div class="timeline-content float-start w-100">
+                                                                <img src="./assets/images/snippet/snippet-2.png" class="float-start w-100" />
+                                                            </div>
+                                                          </li>
+                                                        </ul>
+                                                        <!-- <div class="add-comment float-start w-100 position-relative">
+                                                            <textarea class="form-control float-start" placeholder="Add comment"></textarea>
+                                                            <div class="btn-icon float-start rounded-circle cursor-pointer float-start position-absolute">
+                                                                <i class="fa-regular fa-paper-plane font-20"></i>
+                                                            </div>
+                                                        </div> -->
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            ...</div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            ...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
