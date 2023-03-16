@@ -87,6 +87,9 @@
 .text-white{
     color: $white;
 }
+.text-muted{
+    color: $text-200 !important;
+}
 //1.3 Button
 .btn-icon{
     width: 35px;
@@ -120,7 +123,7 @@
         top: 25px;
         right: -10px;
         background-color: $white;
-        border: 1px solid $text;
+        border: 1px solid #dee2e6!important;
         min-width: 300px;
         z-index: 3;
         &::before{
@@ -268,7 +271,7 @@
                 content: '';
                 display: block;
                 position: absolute;
-                top: 3px;
+                top: 4px;
                 left: 7px;
                 width: 6px;
                 height: 12px;
@@ -935,21 +938,29 @@
                 }
                 &.sidebarHidden{
                     .qsn-table-wrapper{
-                        width: calc(100% - 14px) !important;
+                        // width: calc(100% - 14px) !important;
+                        width: 100%;
                         border-right: none;
                     }
                 }
+                .accordion-item .accordion-body .qsn-table-wrapper tr th{
+                    border-top: 1px solid #E2E2E3;
+                    padding: 15px !important;
+                }
                 .grid-wrapper{
                     tr{
-                        th:nth-child(3),th:nth-child(4),th:nth-child(5),th:nth-child(6),
+                        th:nth-child(3),th:nth-child(4),th:nth-child(5),th:nth-child(6),th:nth-child(7),
                         td:nth-child(1) .fa-circle-info, td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6){
                             display: none;
+                        }
+                        th:nth-child(2){
+                            text-align: left !important;
                         }
                         &.active{
                             td{
                                 background-color: $primary !important;
                                 color: $white;
-                                p{
+                                p, div,span{
                                     color: $white;
                                 }
                                 // &:nth-child(2){
@@ -1022,13 +1033,19 @@
                                 td{
                                     border-top: 1px solid $grey-200;
                                 }
+                                th:nth-child(3){
+                                    background-color: #ececec;
+                                }
                             }
                             &:nth-child(2){
                                 th{
                                     padding: 5px 16px !important;
                                 }
+                                th:nth-child(4),th:nth-child(5){
+                                    background-color: #ececec;
+                                }
                             }
-
+                            
                             // th:first-child, td:first-child{
                             //     border-left: 1px solid $grey-200;
                             // }
@@ -1085,7 +1102,66 @@
                                         width: 200px;
                                     }
                                 }
-                                
+                                .editable-field{
+                                    .form-control{
+                                        min-width: 200px;
+                                        padding: 5px;
+                                        font-size: 12px;
+                                    }
+                                }
+                                &:nth-child(4),&:nth-child(5){
+                                    background-color: #ececec;
+                                }
+                                .confidence-score-wrapper{
+                                    .score-item-wrapper {
+                                        width: 28px;
+                                        margin: 0 auto;
+                                        position: relative;
+                                        top: 3px;
+                                        .score-item{
+                                            height: 20px;
+                                            width: 5px;
+                                            background-color: #ececec;
+                                            margin-right: 2px;
+                                            &:nth-child(1){
+                                                height: 5px;
+                                                margin-top: 15px;
+                                            }
+                                            &:nth-child(2){
+                                                height: 10px;
+                                                margin-top: 10px;
+                                            }
+                                            &:nth-child(3){
+                                                height: 15px;
+                                                margin-top: 5px;
+                                            }
+                                            &:nth-child(4){
+                                                height: 20px;
+                                                margin-top: 0px;
+                                            }
+                                        }
+                                    }
+                                    &.quater{
+                                        span:nth-child(1){
+                                            background-color: $danger;
+                                        }
+                                    }
+                                    &.half{
+                                        span:nth-child(1),span:nth-child(2){
+                                            background-color: $warning;
+                                        }
+                                    }
+                                    &.one-third{
+                                        span:nth-child(1),span:nth-child(2),span:nth-child(3){
+                                            background-color: $success;
+                                        }
+                                    }
+                                    &.full{
+                                        .score-item-wrapper .score-item{
+                                            background-color: $success;
+                                        }
+                                    }
+                                }
                             }
                             &:last-child{
                                 td{
@@ -1126,40 +1202,6 @@
                                 .custom-popover-wrapper{
                                     min-width: 350px;
                                     .custom-popover-body{
-                                        .timeline{
-                                            .timeline-item{
-                                                .name-wrapper{
-                                                    .name{
-                                                        width: calc(100% - 110px);
-                                                        line-height: 10px;
-                                                    }
-                                                    .time{
-                                                        width: 90px;
-                                                    }
-                                                }
-                                                .text-muted{
-                                                    color: $text-200 !important;
-                                                }
-                                            }
-                                        }
-                                        .add-comment{
-                                            .form-control{
-                                                width: 100%;
-                                                border-radius: 50px;
-                                                height: 44px;
-                                                font-size: 14px;
-                                                padding: 9px 15px;
-                                            }
-                                            .btn-icon{
-                                                top: 5px;
-                                                right: 6px;
-                                                background-color: $text;
-                                                border-color: $text;
-                                                i{
-                                                    color: $white;
-                                                }
-                                            }
-                                        }
                                     }
                                 }
                             }
@@ -1182,12 +1224,64 @@
                 p{
                     width: calc(100% - 28px);
                     line-height: 24px;
+                    font-weight: 600;
                 }
             }
             .viewer-body{
                 min-height: calc(100vh - 200px);
                 iframe{
                     min-height: calc(100vh - 200px);
+                }
+
+                .comment-wrapper{
+                    .comment-item{
+                        position: relative;
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            top: 29px;
+                            left: 15px;
+                            width: 1px;
+                            height: 100%;
+                            background-color: #e8e8e8;
+                        }
+                        .name-wrapper{
+                            .user-icon{
+                                width: 30px;
+                                height: 30px;
+                                background: #e8e8e8;
+                                i{
+                                    position: relative;
+                                    top: 6px;
+                                }
+                            }
+                            .name{
+                                width: calc(100% - 50px);
+                                margin-top: 5px;
+                            }
+                        }
+                        .comment-text{
+                            padding-left: 38px;
+                        }
+                    }
+                }
+                .add-comment{
+                    .form-control{
+                        width: 100%;
+                        border-radius: 50px;
+                        height: 44px;
+                        font-size: 14px;
+                        padding: 9px 15px;
+                    }
+                    .btn-icon{
+                        top: 5px;
+                        right: 6px;
+                        background-color: $text;
+                        border-color: $text;
+                        i{
+                            color: $white;
+                        }
+                    }
                 }
             }
         }
