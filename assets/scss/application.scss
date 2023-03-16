@@ -117,11 +117,11 @@
 .custom-popover{
     .custom-popover-wrapper{
         display: none;
-        top: 42px;
-        right: 0;
+        top: 25px;
+        right: -10px;
         background-color: $white;
         border: 1px solid $text;
-        min-width: 150px;
+        min-width: 300px;
         z-index: 3;
         &::before{
             content: '';
@@ -151,7 +151,7 @@
             }
         }
         .custom-popover-body{
-            max-height: 275px;
+            // max-height: 275px;
             overflow: hidden;
             padding: 7px 12px;
             .form-label{
@@ -159,7 +159,7 @@
             }
         }
     }
-    .custom-popover-action:hover + .custom-popover-wrapper{
+    .custom-popover-action:hover + .custom-popover-wrapper, .custom-popover-action:hover + .custom-popover-wrapper:hover{
         display: block;
     }
     &.icon-popover {
@@ -175,11 +175,11 @@
             }
         }
     }
-    // &.clickable-popover{
-    //     .custom-popover-action:hover + .custom-popover-wrapper{
-    //         display: none;
-    //     }
-    // }
+    &.clickable-popover{
+        .custom-popover-action:hover + .custom-popover-wrapper{
+            display: none;
+        }
+    }
 }
 //1.5 Custom Radio
 .custom-radio {
@@ -705,7 +705,7 @@
 //6.1 QC Company Wrapper
 .qc-company-wrapper{
     .company-details{
-        width: calc(100% - 55px);
+        width: calc(100% - 65px);
         .logo-wrapper{
             width: 70px;
             height: 70px;
@@ -736,7 +736,7 @@
         }
     }
     .qc-complete-status{
-        width: 55px;
+        width: 65px;
         .collabse-icon{
             top: -10px;
             right: -10px;
@@ -837,11 +837,14 @@
         // }
         .sidemenu{
             width: 200px;
-            &.sidemenu-fixed{
+            &.sidemenu-fixed, &.hiden-sidebar{
                 position: absolute;
                 top: 40px;
                 left: 0;
                 z-index: 1;
+            }
+            &.hiden-sidebar{
+                z-index: -1;
             }
             .accordion-item{
                 .accordion-header{
@@ -1020,6 +1023,11 @@
                                     border-top: 1px solid $grey-200;
                                 }
                             }
+                            &:nth-child(2){
+                                th{
+                                    padding: 5px 16px !important;
+                                }
+                            }
 
                             // th:first-child, td:first-child{
                             //     border-left: 1px solid $grey-200;
@@ -1028,14 +1036,15 @@
                                 // background-color: $primary;
                                 // color: $white;
                                 // line-height: 20px;
-                                padding: 3px 16px !important;
-                                background-color: #f8f9fa;
+                                padding: 10px 15px !important;
+                                border-bottom: 1px solid #E2E2E3;
+                                background-color: #ffffff;
                                 // border: 1px solid #dee2e6;
-                                border: none;
-                                &:nth-child(1),&:nth-child(4),&:nth-child(5),&:nth-child(6){
-                                    opacity: 0;
-                                    border: none;
-                                }
+                                // border: none;
+                                // &:nth-child(1),&:nth-child(4),&:nth-child(5),&:nth-child(6){
+                                //     opacity: 0;
+                                //     border: none;
+                                // }
                             }
                             // &:nth-child(1) th:nth-child(2){
                             //     padding: 3px !important;
@@ -1240,4 +1249,21 @@
 }
 @media only screen and (max-width: 990px){
     .progress{ margin-bottom: 20px; }
+}
+
+
+// Removable CSS
+.alert-onhover{
+    &.warning-alert:hover{
+        border-color: $warning;
+        i{
+            color: $warning !important;
+        }
+    }
+    &.danger-alert{
+        border-color: $danger;
+        i{
+            color: $danger !important;
+        }
+    }
 }
