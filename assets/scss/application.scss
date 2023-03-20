@@ -28,6 +28,7 @@
 }
 .font-16{
     font-size: 16px;
+    line-height: 22px;
 }
 .font-18{
     font-size: 18px;
@@ -257,38 +258,46 @@
             position: relative;
             vertical-align: middle;
             cursor: pointer;
-            margin-right: 5px;
             border-radius: 100%;
         }
       }
     input {
         padding: 0;
-        height: initial;
-        width: initial;
+        height: 35px;
+        width: 35px;
         margin-bottom: 0;
-        display: none;
+        /* opacity: 0; */
+        cursor: pointer;
+        float: left;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 100% !important;
+        z-index: 1;
+        opacity: 0;
         cursor: pointer;
         & + label::after{
             content: '';
             display: block;
             position: absolute;
-            top: 7px;
+            top: 9px;
             left: 13px;
             width: 7px;
-            height: 16px;
+            height: 14px;
             border: solid $white;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
         }
         &:checked + label{
+            // z-index: 2;
             &:after {
                 content: '';
                 display: block;
                 position: absolute;
-                top: 7px;
+                top: 9px;
                 left: 13px;
                 width: 7px;
-                height: 16px;
+                height: 14px;
                 border: solid $primary;
                 border-width: 0 2px 2px 0;
                 transform: rotate(45deg);
@@ -362,7 +371,7 @@
         }
         span{
             font-size: 10px;
-            padding: 4px;
+            padding: 4px 5px;
             position: relative;
             top: -4px;
             background-color: $secondary;
@@ -702,6 +711,10 @@
                 border-radius: 2px;
             }
         }
+        .timeline-content p {
+            font-size: 14px;
+            line-height: 20px;
+        }
         // &:after {
         //     content: "";
         //     position: absolute;
@@ -944,6 +957,9 @@
             }
             &.pdfViewerShow{
                 width: 500px;
+                &.general-tab{
+                    width: 500px !important;
+                }
                 .accordion-body{
                     padding-left: 0;
                     // border-right: none;
@@ -1041,6 +1057,16 @@
                             // &:last-child{
                             //     border-right: 1px solid $grey-200;
                             // }
+                            &.child{
+                                td:nth-child(1){
+                                    padding-left: 50px;
+                                }
+                                &.child2{
+                                    td:nth-child(1){
+                                        padding-left: 100px;
+                                    }
+                                }
+                            }
                         }
                         tr{
                             &:first-child{
@@ -1053,7 +1079,11 @@
                             }
                             &:nth-child(2){
                                 th{
-                                    padding: 5px 16px !important;
+                                    padding: 10px 16px !important;
+
+                                    &:nth-child(1), &:nth-child(3), &:nth-child(5){
+                                        border-right: 1px solid #E2E2E3;
+                                    }
                                 }
                                 // th:nth-child(4),th:nth-child(5){
                                 //     background-color: #ececec;
@@ -1067,7 +1097,7 @@
                                 // background-color: $primary;
                                 // color: $white;
                                 // line-height: 20px;
-                                padding: 10px 15px !important;
+                                padding: 5px 15px !important;
                                 border-bottom: 1px solid #E2E2E3;
                                 background-color: #ffffff;
                                 // border: 1px solid #dee2e6;
@@ -1118,9 +1148,27 @@
                                 }
                                 .editable-field{
                                     .form-control{
-                                        min-width: 200px;
+                                        // min-width: 50px;
+                                        width: 90px;
                                         padding: 5px;
                                         font-size: 12px;
+                                    }
+                                }
+                                .custom-unit-dropdown select{
+                                    padding: 5px;
+                                    font-size: 12px;
+                                    appearance: none !important;
+                                    -webkit-appearance: none !important;
+                                    -moz-appearance: none !important;
+                                    width: 70px !important;
+                                    background-position: calc(100% - 3px) 8px;
+                                    padding-right: 20px;
+                                }
+                                &:nth-child(3){
+                                    .editable-field{
+                                        .form-control{
+                                            width: 120px;
+                                        }
                                     }
                                 }
                                 // &:nth-child(4),&:nth-child(5){
@@ -1175,6 +1223,9 @@
                                             background-color: $success;
                                         }
                                     }
+                                }
+                                &:nth-child(1), &:nth-child(3), &:nth-child(5){
+                                    border-right: 1px solid #E2E2E3;
                                 }
                             }
                             &:last-child{
@@ -1266,7 +1317,8 @@
                                 background: #e8e8e8;
                                 i{
                                     position: relative;
-                                    top: 6px;
+                                    top: 3px;
+                                    font-size: 14px;
                                 }
                             }
                             .name{
@@ -1362,7 +1414,7 @@
 
 // Removable CSS
 .alert-onhover{
-    &.warning-alert:hover{
+    &.warning-alert{
         border-color: $warning;
         i{
             color: $warning !important;
@@ -1373,5 +1425,26 @@
         i{
             color: $danger !important;
         }
+    }
+}
+.new-comment{
+    // border-color: $warning;
+    // i{
+    //     color: $warning !important;
+    // }
+    // &:hover, &:focus, &:hover:focus{
+    //     border-color: $warning;
+    // }
+    // position: relative;
+    &::before{
+        content: '';
+        position: absolute;
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        background: $danger;
+        border-radius: 100%;
+        top: 0;
+        right: -1px;
     }
 }
