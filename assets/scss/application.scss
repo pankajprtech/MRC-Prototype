@@ -91,6 +91,9 @@
 .text-muted{
     color: $text-200 !important;
 }
+.visibile-none{
+    visibility: hidden;
+}
 //1.3 Button
 .btn-icon{
     width: 35px;
@@ -306,7 +309,15 @@
                 border-color: $primary;
             }
         }
+        &:checked + label::before{
+            border-color: $success;
+            background-color: $success;
+        }
+        &:checked + label:after{
+            border-color: $white;
+        }
     }
+
   }
   
 // 2. Bootstrap Overright
@@ -735,7 +746,7 @@
 //6.1 QC Company Wrapper
 .qc-company-wrapper{
     .company-details{
-        width: calc(100% - 65px);
+        width: calc(100% - 185px);
         .logo-wrapper{
             width: 70px;
             height: 70px;
@@ -771,6 +782,9 @@
             top: -10px;
             right: -10px;
         }
+    }
+    .back-btn{
+        margin-top: 13px;
     }
 }
 .main-wrapper{
@@ -867,6 +881,8 @@
         // }
         .sidemenu{
             width: 200px;
+            height: calc(100vh - 170px);
+            background-color: #3C3C3C;
             &.sidemenu-fixed, &.hiden-sidebar{
                 position: absolute;
                 top: 40px;
@@ -956,9 +972,9 @@
                 }
             }
             &.pdfViewerShow{
-                width: 500px;
+                width: 515px;
                 &.general-tab{
-                    width: 500px !important;
+                    width: 515px !important;
                 }
                 .accordion-body{
                     padding-left: 0;
@@ -979,8 +995,9 @@
                 }
                 .grid-wrapper{
                     tr{
-                        th:nth-child(3),th:nth-child(4),th:nth-child(5),th:nth-child(6),th:nth-child(7),
-                        td:nth-child(1) .fa-circle-info, td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6){
+                        th:nth-child(4),th:nth-child(5),th:nth-child(6),th:nth-child(7),
+                        td:nth-child(1) .fa-circle-info,td:nth-child(4),td:nth-child(5),td:nth-child(6),
+                        &:first-child th:nth-child(3){
                             display: none;
                         }
                         th:nth-child(2){
@@ -1134,13 +1151,6 @@
                                         border-width: 3px;
                                     }
                                 }
-                                .custom-checkbox input:checked + label::before{
-                                    border-color: $success;
-                                    background-color: $success;
-                                }
-                                .custom-checkbox input:checked + label:after{
-                                    border-color: $white;
-                                }
                                 &:nth-child(5){
                                     p{
                                         width: 200px;
@@ -1164,7 +1174,7 @@
                                     background-position: calc(100% - 3px) 8px;
                                     padding-right: 20px;
                                 }
-                                &:nth-child(3){
+                                &:nth-child(3),&:nth-child(5){
                                     .editable-field{
                                         .form-control{
                                             width: 120px;
@@ -1279,7 +1289,7 @@
             }
         }
         .pdf-viewer-wrapper{
-            width: calc(100% - 500px);
+            width: calc(100% - 515px);
             border: 1px solid $grey-200 !important;
             // margin-left: -1px;
             // margin-top: -1px;
@@ -1287,7 +1297,7 @@
             .viewer-header {
                 padding: 10px 15px;
                 p{
-                    width: calc(100% - 28px);
+                    width: calc(100% - 70px);
                     line-height: 24px;
                     font-weight: 600;
                 }
@@ -1442,7 +1452,7 @@
         position: absolute;
         height: 10px;
         width: 10px;
-        background: $danger;
+        background: $success;
         border-radius: 100%;
         top: 0;
         right: -1px;
