@@ -327,6 +327,12 @@
 .btn-primary{
     background-color: $primary;
     border-color: $primary;
+    &:hover, &:focus, &:active{
+        background-color: #218dc1;
+        border-color: #218dc1;
+        outline: none;
+        box-shadow: none;
+    }
 }
 .bg-warning{
     background-color: $warning !important;
@@ -335,7 +341,7 @@
     background-color: $danger !important;
 }
 .form-select{
-    border: 1px solid $text-200;
+    // border: 1px solid $text-200;
     &:focus,&:active{
         box-shadow: none;
         outline: none;
@@ -456,7 +462,7 @@
                 position: absolute;
                 top: 9px;
                 left: 10px;
-                color: #111111;
+                color: $text-200;
                 font-size: 16px;
             }
             input{
@@ -602,6 +608,21 @@
         }
     }
 }
+.custom-toast{
+    position: fixed;
+    z-index: 10;
+    top: 48px;
+    right: 10px;
+    border: none;
+    box-shadow: 0 0 9px #ccc;
+    padding: 3px;
+    &.success{
+        background-color: $success-100;
+        .toast-body{
+            color: $success;
+        }
+    }
+}
 // 3. Common Header
 .custon-navbar{
     // border-bottom: 1px solid $grey-200;
@@ -742,11 +763,64 @@
     }
 }
   
+// Comment Wrapper
+
+.comment-wrapper{
+    .comment-item{
+        position: relative;
+        &::after{
+            content: '';
+            position: absolute;
+            top: 29px;
+            left: 15px;
+            width: 1px;
+            height: 100%;
+            background-color: #e8e8e8;
+        }
+        .name-wrapper{
+            .user-icon{
+                width: 30px;
+                height: 30px;
+                background: #e8e8e8;
+                i{
+                    position: relative;
+                    top: 3px;
+                    font-size: 14px;
+                }
+            }
+            .name{
+                width: calc(100% - 50px);
+                margin-top: 5px;
+            }
+        }
+        .comment-text{
+            padding-left: 38px;
+        }
+    }
+}
+.add-comment{
+    .form-control{
+        width: 100%;
+        border-radius: 50px;
+        height: 44px;
+        font-size: 14px;
+        padding: 9px 15px;
+    }
+    .btn-icon{
+        top: 5px;
+        right: 6px;
+        background-color: $text;
+        border-color: $text;
+        i{
+            color: $white;
+        }
+    }
+}
 // QC Page
 //6.1 QC Company Wrapper
 .qc-company-wrapper{
     .company-details{
-        width: calc(100% - 185px);
+        width: calc(100% - 400px);
         .logo-wrapper{
             width: 70px;
             height: 70px;
@@ -763,6 +837,43 @@
         .company-info{
             width: calc(100% - 100px);
             margin-top: 5px;
+        }
+    }
+    .company-status{
+        width: 330px;
+        .status-wrapper{
+            .status-item {
+                &.completed::before{
+                    background-color: $success;
+                }
+                &::before{
+                    content: '';
+                    height: 2px;
+                    width: 100%;
+                    background: $grey-200;
+                    position: absolute;
+                    top: 10px;
+                    left: 0;
+                }
+                .custom-checkbox {
+                    left: 40%;
+                    top: 0;
+                    label{
+                        &::before{
+                            padding: 10px;
+                        }
+                        &::after{
+                            top: 5px;
+                            left: 9px;
+                            height: 12px;
+                            width: 6px;
+                        }
+                    }
+                }
+                .status-text{
+                    margin-top: 26px;
+                }
+            }
         }
     }
     .collapsedView{
@@ -782,9 +893,6 @@
             top: -10px;
             right: -10px;
         }
-    }
-    .back-btn{
-        margin-top: 13px;
     }
 }
 .main-wrapper{
@@ -880,6 +988,10 @@
         //     }
         // }
         .sidemenu{
+            // position: fixed;
+            // top: 172px;
+            // left: 12px;
+            // height: 100%;
             width: 200px;
             height: calc(100vh - 170px);
             background-color: #3C3C3C;
@@ -962,6 +1074,10 @@
         .main-panel{
             width: calc(100% - 200px);
             margin-left: -1px;
+            // margin-left: 199px;
+            &.sidebarVisiable{
+                margin-left: 0;
+            }
             .accordion-body{
                 padding-bottom: 0;
             }
@@ -972,9 +1088,9 @@
                 }
             }
             &.pdfViewerShow{
-                width: 515px;
+                width: 525px;
                 &.general-tab{
-                    width: 515px !important;
+                    width: 525px !important;
                 }
                 .accordion-body{
                     padding-left: 0;
@@ -992,6 +1108,7 @@
                 .accordion-item .accordion-body .qsn-table-wrapper tr th{
                     border-top: 1px solid #E2E2E3;
                     padding: 15px !important;
+                    text-align: center !important;
                 }
                 .grid-wrapper{
                     tr{
@@ -1162,6 +1279,7 @@
                                         width: 90px;
                                         padding: 5px;
                                         font-size: 12px;
+                                        float: right;
                                     }
                                 }
                                 .custom-unit-dropdown select{
@@ -1289,17 +1407,22 @@
             }
         }
         .pdf-viewer-wrapper{
-            width: calc(100% - 515px);
+            width: calc(100% - 525px);
             border: 1px solid $grey-200 !important;
             // margin-left: -1px;
             // margin-top: -1px;
             // margin-left: -14px;
             .viewer-header {
-                padding: 10px 15px;
+                padding: 4px 15px;
                 p{
-                    width: calc(100% - 70px);
+                    width: calc(100% - 80px);
                     line-height: 24px;
                     font-weight: 600;
+                }
+                .btn-sm{
+                    border-radius: 100%;
+                    width: 35px;
+                    height: 35px;
                 }
             }
             .viewer-body{
@@ -1308,62 +1431,35 @@
                     min-height: calc(100vh - 200px);
                 }
 
-                .comment-wrapper{
-                    .comment-item{
-                        position: relative;
-                        &::after{
-                            content: '';
-                            position: absolute;
-                            top: 29px;
-                            left: 15px;
-                            width: 1px;
-                            height: 100%;
-                            background-color: #e8e8e8;
-                        }
-                        .name-wrapper{
-                            .user-icon{
-                                width: 30px;
-                                height: 30px;
-                                background: #e8e8e8;
-                                i{
-                                    position: relative;
-                                    top: 3px;
-                                    font-size: 14px;
-                                }
-                            }
-                            .name{
-                                width: calc(100% - 50px);
-                                margin-top: 5px;
-                            }
-                        }
-                        .comment-text{
-                            padding-left: 38px;
-                        }
-                    }
-                }
-                .add-comment{
-                    .form-control{
-                        width: 100%;
-                        border-radius: 50px;
-                        height: 44px;
-                        font-size: 14px;
-                        padding: 9px 15px;
-                    }
-                    .btn-icon{
-                        top: 5px;
-                        right: 6px;
-                        background-color: $text;
-                        border-color: $text;
-                        i{
-                            color: $white;
-                        }
-                    }
-                }
             }
         }
 
     }
 
+}
+
+
+.pdf-tile{
+    width: 18%;
+    margin-right: 2%;
+    border-radius: 7px;
+    .pdf-icon-wrapper{
+        width: 25%;
+        margin: 0 auto;
+        img{
+            width: 100%;
+        }
+    }
+    .pdf-text-wrapper{
+        .pdf-name{
+            width: calc(100% - 45px);
+        }
+        .pdf-icon{
+            i{
+                color: $secondary;
+            }
+        }
+    }
 }
 
 //6. keyframes
@@ -1456,5 +1552,15 @@
         border-radius: 100%;
         top: 0;
         right: -1px;
+    }
+}
+.modal-content{
+    border: none;
+    .modal-header,.modal-footer{
+        padding: 10px 15px;
+        // background-color: #007BB6;
+        // .modal-title, .btn-close{
+        //     color: $white;
+        // }
     }
 }
