@@ -842,6 +842,7 @@
     .company-status{
         width: 330px;
         .status-wrapper{
+            margin-top: 14px;
             .status-item {
                 &.completed::before{
                     background-color: $success;
@@ -1415,14 +1416,15 @@
             .viewer-header {
                 padding: 4px 15px;
                 p{
-                    width: calc(100% - 80px);
+                    // width: calc(100% - 80px);
                     line-height: 24px;
                     font-weight: 600;
                 }
                 .btn-sm{
-                    border-radius: 100%;
-                    width: 35px;
-                    height: 35px;
+                    margin-top: 3px !important;
+                    // border-radius: 100%;
+                    // width: 35px;
+                    // height: 35px;
                 }
             }
             .viewer-body{
@@ -1534,25 +1536,37 @@
     }
 }
 .new-comment{
-    // border-color: $warning;
-    // i{
-    //     color: $warning !important;
-    // }
-    // &:hover, &:focus, &:hover:focus{
-    //     border-color: $warning;
-    // }
-    // position: relative;
     &::before{
         content: '';
         position: absolute;
         position: absolute;
         height: 10px;
         width: 10px;
-        background: $success;
+        background: #236194;
         border-radius: 100%;
         top: 0;
         right: -1px;
     }
+}
+.new-comment1{
+    border-color: $warning;
+    i{
+        color: $warning !important;
+    }
+    &:hover, &:focus, &:hover:focus{
+        border-color: $warning;
+    }
+    position: relative;
+}
+.new-comment2{
+    border-color: #236194;
+    i{
+        color: #236194 !important;
+    }
+    &:hover, &:focus, &:hover:focus{
+        border-color: #236194;
+    }
+    position: relative;
 }
 .modal-content{
     border: none;
