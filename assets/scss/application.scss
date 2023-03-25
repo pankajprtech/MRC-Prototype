@@ -7,6 +7,7 @@
 //          1.2 Text
 //          1.3 Button
 //          1.4 Popover
+//          1.7 toggle switch
 //      2. Bootstrap Overright
 //      3. Common Header
 //      4. Timeline
@@ -242,7 +243,6 @@
     }
 }
 //1.6 Custom Checkbox
-
 .custom-checkbox {
     display: block;
     // margin-bottom: 15px;
@@ -319,7 +319,60 @@
     }
 
   }
-  
+//1.7 toggle switch
+.toggle-switch{
+    margin-top: 15px;
+    width: 60px;
+    span{
+        &.checked{
+            display: none;
+        }
+        &.hold{
+            display: block;
+        }
+    }
+    input[type="checkbox"] {
+      position: relative;
+      width: 40px;
+      height: 20px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: $success-100;
+      border: 1px solid $success;
+      outline: none;
+      border-radius: 2rem;
+      cursor: pointer;
+    }
+    input[type="checkbox"]::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: $white;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      transition: 0.5s;
+    }
+    input[type="checkbox"]:checked {
+        & + span.checked{
+            display: block;
+            & + span.hold{
+                display: none;
+            }
+        }
+    }
+    input[type="checkbox"]:checked::before {
+    //   transform: translateX(100%);
+        right: 1px;
+        left: unset;
+        background: $white;
+    }
+    input[type="checkbox"]:checked {
+      background: $warning-100;
+      border: 1px solid $warning;
+    }
+}
 // 2. Bootstrap Overright
 .btn, .btn-sm, .btn-lg{
     border-radius: 0;
@@ -837,11 +890,80 @@
         .company-info{
             width: calc(100% - 100px);
             margin-top: 5px;
+            .hold-wrapper, .inprogress-wrapper{
+                padding: 2px 5px;
+                border-radius: 4px;
+                cursor: pointer;
+                span{
+                    color: $white;
+                }
+            }
+            .hold-wrapper{
+                background-color: $warning-300;
+            }
+            .inprogress-wrapper{
+                background-color: $success-300;
+            }
         }
     }
     .company-status{
         width: 330px;
+        .on-off-toggle {
+            width: 56px;
+            height: 24px;
+            position: relative;
+            display: inline-block;
+            .on-off-toggle__slider {
+                width: 56px;
+                height: 24px;
+                display: block;
+                border-radius: 34px;
+                background-color: #d8d8d8;
+                transition: background-color 0.4s;
+                &::before {
+                    content: '';
+                    display: block;
+                    background-color: #fff;
+                    box-shadow: 0 0 0 1px #949494;
+                    bottom: 3px;
+                    height: 18px;
+                    left: 3px;
+                    position: absolute;
+                    transition: .4s;
+                    width: 18px;
+                    z-index: 5;
+                    border-radius: 100%;
+                }
+                &::after {
+                    display: block;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    font-weight: bold;
+                    content: 'Inprogress';
+                    color: #484848;
+                    padding-left: 26px;
+                    transition: all 0.4s;
+                }
+            }
+            .on-off-toggle__input {
+                position: absolute;
+                opacity: 0;
+                &:checked+.on-off-toggle__slider {
+                    background-color: #000;
+                    &::before {
+                        transform: translateX(32px);
+                    }
+                    &::after {
+                        content: 'Hold';
+                        color: #FFFFFF;
+                        padding-left: 8px;
+                    }
+                }
+            }
+        }
         .status-wrapper{
+            width: 250px;
             margin-top: 14px;
             .status-item {
                 &.completed::before{
@@ -857,7 +979,7 @@
                     left: 0;
                 }
                 .custom-checkbox {
-                    left: 40%;
+                    left: 30%;
                     top: 0;
                     label{
                         &::before{
@@ -1426,6 +1548,20 @@
                     // width: 35px;
                     // height: 35px;
                 }
+                .search-field{
+                    position: relative;
+                    i{
+                        position: absolute;
+                        top: 9px;
+                        left: 10px;
+                        color: $text-200;
+                        font-size: 16px;
+                    }
+                    input{
+                        font-size: 14px;
+                        padding-left: 30px;
+                    }
+                }
             }
             .viewer-body{
                 min-height: calc(100vh - 200px);
@@ -1522,6 +1658,7 @@
 
 // Removable CSS
 .alert-onhover{
+    cursor: default;
     &.warning-alert{
         border-color: $warning;
         i{
@@ -1536,16 +1673,35 @@
     }
 }
 .new-comment{
-    &::before{
-        content: '';
+    // &::before{
+    //     content: '';
+    //     position: absolute;
+    //     position: absolute;
+    //     height: 10px;
+    //     width: 10px;
+    //     background: #236194;
+    //     border-radius: 100%;
+    //     top: 0;
+    //     right: -1px;
+    // }
+    border-color: $warning;
+    i{
+        color: $warning !important;
+    }
+    &:hover, &:focus, &:hover:focus{
+        border-color: $warning;
+    }
+    .comment-count {
         position: absolute;
-        position: absolute;
-        height: 10px;
-        width: 10px;
+        top: -4px;
+        right: -5px;
+        float: left;
+        padding: 3px 5px;
         background: #236194;
         border-radius: 100%;
-        top: 0;
-        right: -1px;
+        color: #fff;
+        font-size: 10px;
+        line-height: 10px;
     }
 }
 .new-comment1{
@@ -1576,5 +1732,21 @@
         // .modal-title, .btn-close{
         //     color: $white;
         // }
+    }
+}
+.comment-dropdown{
+    .dropdown-menu {
+        transform: none !important;
+        top: 40px !important;
+        left: unset !important;
+        right: 0 !important;
+    }
+    ul{
+        padding: 0;
+        li{
+            a{
+                padding: 8px;
+            }
+        }
     }
 }
