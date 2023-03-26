@@ -138,7 +138,7 @@
             border-bottom: 7px solid $text;
             position: absolute;
             right: 10px;
-            top: -8px;
+            top: -7px;
         }
         .custom-popover-header{
             background-color: $text;
@@ -172,8 +172,8 @@
     }
     &.icon-popover {
         .custom-popover-wrapper{
-            top: 24px;
-            right: -10px;
+            top: 41px;
+            right: 0px;
         }
     }
     &.popover-overflow{
@@ -186,6 +186,16 @@
     &.clickable-popover{
         .custom-popover-action:hover + .custom-popover-wrapper{
             display: none;
+        }
+    }
+    &.alert-popover{
+        .timeline-item{
+            i{
+                width: 30px;
+            }
+            span{
+                width: calc(100% - 30px);
+            }
         }
     }
 }
@@ -1746,6 +1756,18 @@
         li{
             a{
                 padding: 8px;
+            }
+        }
+    }
+}
+#alertModal{
+    .timeline{
+        .timeline-item{
+            i{
+                width: 30px;
+            }
+            span{
+                width: calc(100% - 30px);
             }
         }
     }
